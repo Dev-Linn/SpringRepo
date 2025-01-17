@@ -3,7 +3,7 @@ package com.example.springRestApi.model;
 public class Motor {
 
     private String model;
-    private String cavalos;
+    private Integer cavalos;
     private Integer cilindros;
     private Double litragem;
     private TipoMotor tipo;
@@ -16,11 +16,11 @@ public class Motor {
         this.model = model;
     }
 
-    public String getCavalos() {
+    public Integer getCavalos() {
         return cavalos;
     }
 
-    public void setCavalos(String cavalos) {
+    public void setCavalos(Integer cavalos) {
         this.cavalos = cavalos;
     }
 
@@ -46,5 +46,16 @@ public class Motor {
 
     public void setTipo(TipoMotor tipo) {
         this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "Motor{" +
+                "model='" + model + '\'' +
+                ", cavalos=" + cavalos +
+                ", cilindros=" + cilindros +
+                ", litragem=" + litragem +
+                ", tipo=" + tipo +
+                '}';
     }
 }

@@ -1,5 +1,7 @@
 package com.example.springRestApi.model;
 
+import com.example.springRestApi.model.api.CarroStatus;
+
 import java.awt.*;
 
 public class Carro {
@@ -42,5 +44,13 @@ public class Carro {
 
     public void setMontadora(Montadora montadora) {
         this.montadora = montadora;
+    }
+
+    public CarroStatus darIgnicao(Chave chave) {
+       if (chave.getMontadora()!= this.montadora){
+           return new CarroStatus("Não é possivel inciar o carro com essa chave");
+       }
+
+       return new CarroStatus("Carro ligado rodando com o motor: " + motor);
     }
 }

@@ -5,10 +5,12 @@ import java.awt.*;
 public class Porshe extends Carro {
 
 
-    public Porshe(String modelo, Color color, Motor motor, Montadora montadora) {
+    public Porshe(Motor motor) {
         super(motor);
-        this.setModelo(modelo);
+        this.setModelo("GTS");
         this.setColor(Color.BLACK);
         this.setMontadora(Montadora.HONDA);
     }
+
+
 }
