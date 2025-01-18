@@ -2,6 +2,7 @@ package com.example.springRestApi.model.todos.controller;
 
 import com.example.springRestApi.model.todos.TodoEntity;
 import com.example.springRestApi.model.todos.service.TodoService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,7 +17,13 @@ public class TodoController {
 
     @PostMapping
     public TodoEntity save(@RequestBody TodoEntity novoTodo){
-        return todoService.salvar(novoTodo);
+        try {
+            return todoService.salvar(novoTodo);
+        } catch (IllegalArgumentException e) {
+            var mensagemErro = e.getMessage();
+            throw new IllegalArgumentException(String.valueOf(HttpStatus.BAD_REQUEST));
+        }
+
     }
 
     @PutMapping("{id}")
