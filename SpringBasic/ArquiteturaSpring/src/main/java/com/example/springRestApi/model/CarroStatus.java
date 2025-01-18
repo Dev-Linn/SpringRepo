@@ -1,4 +1,4 @@
-package com.example.springRestApi.model.api;
+package com.example.springRestApi.model;
 
 public record CarroStatus(String mensagem) {
 

@@ -8,6 +8,8 @@ public class Motor {
     private Double litragem;
     private TipoMotor tipo;
 
+
+
     public String getModel() {
         return model;
     }
@@ -47,6 +49,7 @@ public class Motor {
     public void setTipo(TipoMotor tipo) {
         this.tipo = tipo;
     }
+
 
     @Override
     public String toString() {

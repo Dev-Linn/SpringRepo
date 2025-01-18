@@ -1,7 +1,5 @@
 package com.example.springRestApi.model;
 
-import com.example.springRestApi.model.api.CarroStatus;
-
 import java.awt.*;
 
 public class Carro {
@@ -9,6 +7,7 @@ public class Carro {
     private Color color;
     private Motor motor;
     private Montadora montadora;
+    private Tipo tipo;
 
    public Carro(Motor motor) {
        this.motor = motor;
@@ -46,11 +45,22 @@ public class Carro {
         this.montadora = montadora;
     }
 
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
     public CarroStatus darIgnicao(Chave chave) {
        if (chave.getMontadora()!= this.montadora){
            return new CarroStatus("Não é possivel inciar o carro com essa chave");
+       } else if (chave.getTipo()!= this.tipo) {
+           return new CarroStatus("O tipo da chave não é compativel");
        }
 
-       return new CarroStatus("Carro ligado rodando com o motor: " + motor);
+
+        return new CarroStatus("Carro ligado rodando com o motor: " + motor);
     }
 }

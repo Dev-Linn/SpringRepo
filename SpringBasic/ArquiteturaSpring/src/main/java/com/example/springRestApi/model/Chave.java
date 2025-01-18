@@ -2,7 +2,8 @@ package com.example.springRestApi.model;
 
 public class Chave {
     private Montadora montadora;
-    private String tipo;
+    private Tipo tipo;
+
 
     public Montadora getMontadora() {
         return montadora;
@@ -12,11 +13,11 @@ public class Chave {
         this.montadora = montadora;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 }

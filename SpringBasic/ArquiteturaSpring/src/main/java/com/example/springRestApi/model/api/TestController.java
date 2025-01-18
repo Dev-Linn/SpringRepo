@@ -4,7 +4,9 @@ package com.example.springRestApi.model.api;
 import com.example.springRestApi.model.Chave;
 import com.example.springRestApi.model.Motor;
 import com.example.springRestApi.model.Porshe;
+import com.example.springRestApi.model.CarroStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @Autowired
+    @Qualifier("motorAspirado")
     private Motor motor;
 
     @PostMapping()

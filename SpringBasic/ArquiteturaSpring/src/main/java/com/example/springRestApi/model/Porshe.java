@@ -10,6 +10,8 @@ public class Porshe extends Carro {
         this.setModelo("GTS");
         this.setColor(Color.BLACK);
         this.setMontadora(Montadora.HONDA);
+        this.setTipo(Tipo.CANIVETE);
+
     }
 
 
