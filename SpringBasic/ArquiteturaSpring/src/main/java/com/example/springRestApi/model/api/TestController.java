@@ -1,10 +1,10 @@
 package com.example.springRestApi.model.api;
 
 
-import com.example.springRestApi.model.Chave;
-import com.example.springRestApi.model.Motor;
-import com.example.springRestApi.model.Porshe;
-import com.example.springRestApi.model.CarroStatus;
+import com.example.springRestApi.model.montadora.Chave;
+import com.example.springRestApi.model.montadora.Motor;
+import com.example.springRestApi.model.montadora.Porshe;
+import com.example.springRestApi.model.montadora.CarroStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;

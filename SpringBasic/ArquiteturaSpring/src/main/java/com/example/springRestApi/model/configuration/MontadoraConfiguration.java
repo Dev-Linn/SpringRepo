@@ -1,8 +1,8 @@
 package com.example.springRestApi.model.configuration;
 
 
-import com.example.springRestApi.model.Motor;
-import com.example.springRestApi.model.TipoMotor;
+import com.example.springRestApi.model.montadora.Motor;
+import com.example.springRestApi.model.montadora.TipoMotor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

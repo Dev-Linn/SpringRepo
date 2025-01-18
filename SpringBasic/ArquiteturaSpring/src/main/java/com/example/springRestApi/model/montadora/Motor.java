@@ -1,4 +1,4 @@
-package com.example.springRestApi.model;
+package com.example.springRestApi.model.montadora;
 
 public class Motor {
 
