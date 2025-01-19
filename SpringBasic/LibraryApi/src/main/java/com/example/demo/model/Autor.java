@@ -1,15 +1,15 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name="autor", schema = "public")
 public class Autor implements Serializable {
@@ -20,5 +20,7 @@ public class Autor implements Serializable {
     @Column(name = "data_nascimento", nullable = false) private LocalDate dataNascimento;
     @Column(name = "nacionalidade", length = 50, nullable = false) private String nacionalidade;
 
+
+    @OneToMany(mappedBy = "autor") private List<Livro> livros;
 
 }
