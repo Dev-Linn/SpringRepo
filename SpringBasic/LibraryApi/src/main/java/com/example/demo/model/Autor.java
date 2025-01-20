@@ -21,6 +21,8 @@ public class Autor implements Serializable {
     @Column(name = "nacionalidade", length = 50, nullable = false) private String nacionalidade;
 
 
-    @OneToMany(mappedBy = "autor") private List<Livro> livros;
+    //@OneToMany(mappedBy = "autor")
+    @Transient
+    private List<Livro> livros;
 
 }
