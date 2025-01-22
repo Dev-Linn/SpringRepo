@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import com.example.demo.model.Autor;
 import com.example.demo.model.GeneroLivro;
 import com.example.demo.model.Livro;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -106,6 +107,18 @@ public class AutorRepositoryTest {
         autor.getLivros().add(livro2);
         repository.save(autor);
         livroRepository.saveAll(autor.getLivros());
+
+    }
+
+    @Test
+    public void buscarAutorComLivros(){
+        var id = UUID.fromString("34e8700d-cf4b-415c-b995-369ccdc4b826");
+        var autor = repository.findById(id).get();
+
+        List<Livro> livrosLista = livroRepository.findByAutor(autor);
+        autor.setLivros(livrosLista);
+
+        autor.getLivros().forEach(System.out::println);
 
     }
 

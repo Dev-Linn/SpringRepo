@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 
 import java.math.BigDecimal;
@@ -11,6 +12,7 @@ import java.util.UUID;
 @Data
 @Entity
 @Table
+@ToString(exclude = "autor")
 public class Livro {
 
     @GeneratedValue(strategy = GenerationType.UUID)
