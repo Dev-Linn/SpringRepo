@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -48,9 +49,6 @@ class LivroRepositoryTest {
         livroRepository.deleteById(id);
   }
 
-
-
-
   @Test
   public void buscarLivro(){
       UUID id = UUID.fromString("855ac5c7-ce4c-425f-915f-0d33fea344dd");
@@ -67,6 +65,26 @@ class LivroRepositoryTest {
         Autor autor = autorRepository.findById(idAutor).orElse(null);
         livroParaAtualizar.setAutor(autor);
         livroRepository.save(livroParaAtualizar);
+    }
+
+    @Test
+    public void buscarPorTitulo(){
+        List<Livro> lista = livroRepository.findByTitulo("Lincoln Livro");
+        lista.forEach(System.out::println);
+    }
+
+    @Test
+    public void buscarPorIsbn(){
+        List<Livro> lista = livroRepository.findByIsbn("0552");
+        lista.forEach(System.out::println);
+    }
+
+    @Test
+    public void buscarPorTituloAndPreco(){
+        var preco = BigDecimal.valueOf(100.00);
+        String titulo = "Lincoln Livro";
+        List<Livro> lista = livroRepository.findByTituloAndPreco(titulo, preco);
+        lista.forEach(System.out::println);
     }
 
 }
