@@ -113,4 +113,23 @@ class LivroRepositoryTest {
         resultado.forEach(System.out::println);
     }
 
+    @Test
+    public void ListarPorGeneroQueryJPQL(){
+        var resultado = livroRepository.findByGenero(GeneroLivro.BIOGRAFIA, "dataPublicacao" );
+        resultado.forEach(System.out::println);
+    }
+
+    @Test
+    public void DeletarPorGeneroQueryJPQL(){
+        livroRepository.deleteByGenero(GeneroLivro.BIOGRAFIA);
+        System.out.println("Deletado com sucesso");
+
+    }
+
+    @Test
+    public void ListarTodosLivros(){
+        var resultado = livroRepository.findAll();
+        resultado.forEach(System.out::println);
+    }
+
 }
