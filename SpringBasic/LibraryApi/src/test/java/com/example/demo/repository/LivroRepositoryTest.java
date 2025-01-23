@@ -27,13 +27,13 @@ class LivroRepositoryTest {
     @Test
     public void salvarLivro() throws Exception {
         Livro livro = new Livro();
-        livro.setIsbn("0552");
-        livro.setTitulo("Lincoln Livro");
+        livro.setIsbn("9999");
+        livro.setTitulo("Livro Caro");
         livro.setGenero(GeneroLivro.BIOGRAFIA);
-        livro.setPreco(BigDecimal.valueOf(100.00));
+        livro.setPreco(BigDecimal.valueOf(999.00));
         livro.setDataPublicacao(LocalDate.of(2005,3,14));
 
-        UUID id = UUID.fromString("84667f8d-e433-4d0a-8fc0-0c09be4a93cd");
+        UUID id = UUID.fromString("b1a1f74a-66fc-4db4-ba3e-031b95afb216");
         Optional<Autor> autor = autorRepository.findById(id);
         if (autor.isPresent()) {
             livro.setAutor(autor.get());
@@ -85,6 +85,32 @@ class LivroRepositoryTest {
         String titulo = "Lincoln Livro";
         List<Livro> lista = livroRepository.findByTituloAndPreco(titulo, preco);
         lista.forEach(System.out::println);
+    }
+
+    @Test
+    public void buscarPorTituloLike(){
+        String titulo = "L";
+        List<Livro> lista = livroRepository.findByTituloLike("%" + titulo + "%");
+        lista.forEach(System.out::println);
+    }
+
+    @Test
+    public void OrdernadoPorTituloEprecoQueryJPQL(){
+
+        List<Livro> lista = livroRepository.OrdernadoPorTituloEpreco();
+        lista.forEach(System.out::println);
+    }
+    @Test
+    public void ListarAutores(){
+
+        List<Autor> lista = livroRepository.listarAutores();
+        lista.forEach(System.out::println);
+    }
+    @Test
+    public void ListarAutoresBrasileiros(){
+
+        var resultado = livroRepository.ListarGenerosBrasileiros();
+        resultado.forEach(System.out::println);
     }
 
 }
