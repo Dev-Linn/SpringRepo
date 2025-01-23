@@ -82,13 +82,13 @@ public class AutorRepositoryTest {
     @Test
     public void salvarAutorComLivros(){
         Autor autor = new Autor();
-        autor.setNome("Marcella");
-        autor.setNacionalidade("Angolana");
-        autor.setDataNascimento(LocalDate.of(1951, 1, 1));
+        autor.setNome("Wally");
+        autor.setNacionalidade("Brasileiro");
+        autor.setDataNascimento(LocalDate.of(2000, 1, 1));
 
         Livro livro = new Livro();
         livro.setIsbn("090909");
-        livro.setTitulo("Marcella Livro");
+        livro.setTitulo("Wally Livro");
         livro.setGenero(GeneroLivro.FANTASIA);
         livro.setPreco(BigDecimal.valueOf(100.00));
         livro.setDataPublicacao(LocalDate.of(2005,3,14));
@@ -96,7 +96,7 @@ public class AutorRepositoryTest {
 
         Livro livro2 = new Livro();
         livro2.setIsbn("2222");
-        livro2.setTitulo("Marcella Livro222");
+        livro2.setTitulo("Wally Livro222");
         livro2.setGenero(GeneroLivro.BIOGRAFIA);
         livro2.setPreco(BigDecimal.valueOf(100.00));
         livro2.setDataPublicacao(LocalDate.of(2005,3,14));

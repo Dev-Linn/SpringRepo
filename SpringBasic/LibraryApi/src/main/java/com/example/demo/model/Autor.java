@@ -25,4 +25,6 @@ public class Autor implements Serializable {
     @OneToMany(mappedBy = "autor")
     private List<Livro> livros;
 
+    //postgres
+
 }
