@@ -112,7 +112,7 @@ public class AutorRepositoryTest {
 
     @Test
     public void buscarAutorComLivros(){
-        var id = UUID.fromString("34e8700d-cf4b-415c-b995-369ccdc4b826");
+        var id = UUID.fromString("313af0ca-46a2-4b9e-a339-aefd6e10d2b6");
         var autor = repository.findById(id).get();
 
         List<Livro> livrosLista = livroRepository.findByAutor(autor);
@@ -120,6 +120,12 @@ public class AutorRepositoryTest {
 
         autor.getLivros().forEach(System.out::println);
 
+
+    }
+
+    @Test
+    public void buscarAllAutores() {
+        repository.findAll().forEach(System.out::println);
     }
 
 }
