@@ -28,14 +28,12 @@ public class Livro {
     @Column(name = "data_publicacao", nullable = false)
     private LocalDate dataPublicacao;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "genero", nullable = false)
+    @Enumerated(EnumType.STRING) @Column(name = "genero", nullable = false)
     private GeneroLivro genero;
 
     @Column(name= "preco", precision = 18, scale = 2)
     private BigDecimal preco;
 
-    @ManyToOne
-    @JoinColumn(name = "id_autor")
+    @ManyToOne @JoinColumn(name = "id_autor")
     private Autor autor;
 }
