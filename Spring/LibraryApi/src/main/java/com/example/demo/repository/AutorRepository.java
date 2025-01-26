@@ -10,5 +10,9 @@ import java.util.UUID;
 public interface AutorRepository extends JpaRepository<Autor, UUID> {
 
     @Query("SELECT a FROM Autor a")
-    public List<Autor> ListarTodosAutores();
+     List<Autor> ListarTodosAutores();
+
+     List<Autor>findByNome(String nome);
+     List<Autor>findByNacionalidade(String nacionalidade);
+     List<Autor>findByNomeAndNacionalidade(String nome, String nacionalidade);
 }

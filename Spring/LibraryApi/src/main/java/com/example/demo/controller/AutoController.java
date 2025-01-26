@@ -13,6 +13,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -50,7 +51,7 @@ public class AutoController {
 
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Autor> retornarAutores(){
         return autorService.listarTodos();
     }
@@ -67,4 +68,19 @@ public class AutoController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<List<AutorDTO>> pesquisar(@RequestParam(value = "nome", required = false) String nome,
+                                                    @RequestParam(value = "nacionalidade", required = false) String nacionalidade)
+    {
+
+        List<Autor> resultado = autorService.pesquisa(nome, nacionalidade);
+        List<AutorDTO> lista = resultado.stream()
+                .map(autor -> new AutorDTO(
+                        autor.getId()
+                        , autor.getNome()
+                        , autor.getDataNascimento(),
+                        autor.getNacionalidade()))
+                        .collect(Collectors.toList());
+                    return ResponseEntity.ok(lista);
+    }
 }

@@ -36,4 +36,20 @@ public class AutorService {
         UUID uuid = UUID.fromString(id);
         autorRepository.deleteById(uuid);
     }
+
+    public List<Autor> pesquisa(String nome, String nacionalidade) {
+        if(nome != null && nacionalidade != null) {
+            return autorRepository.findByNomeAndNacionalidade(nome, nacionalidade);
+        }
+
+        if (nome != null) {
+            return autorRepository.findByNome(nome);
+        }
+
+        if (nacionalidade != null) {
+            return autorRepository.findByNacionalidade(nacionalidade);
+        }
+        return autorRepository.findAll();
+    }
+
 }
