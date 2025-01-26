@@ -56,8 +56,15 @@ public class AutoController {
     }
 
     @DeleteMapping("{id}")
-    public void remover(@PathVariable("id") String id){
-         autorService.excluir(id);
+    public ResponseEntity<Void> remover(@PathVariable("id") String id) {
+        var idAutor = UUID.fromString(id);
+        Optional<Autor> autorOptional = autorService.findById(idAutor);
+        if(autorOptional.isEmpty()){
+            return ResponseEntity.notFound().build();
+        } else {
+            autorService.excluir(String.valueOf(idAutor));
+            return ResponseEntity.noContent().build();
+        }
     }
 
 }
