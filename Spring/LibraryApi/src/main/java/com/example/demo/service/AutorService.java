@@ -3,7 +3,6 @@ package com.example.demo.service;
 
 import com.example.demo.model.Autor;
 import com.example.demo.repository.AutorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +23,13 @@ public class AutorService {
         return autorRepository.save(autor);
     }
 
+    public void atualizar(Autor autor) {
+        if(autor.getId() == null){
+            throw new IllegalArgumentException("Esse id não existe no banco de dados.");
+        }
+        autorRepository.save(autor);
+    }
+
     public Optional<Autor> findById(UUID id) {
         return autorRepository.findById(id);
     }
@@ -39,15 +45,15 @@ public class AutorService {
 
     public List<Autor> pesquisa(String nome, String nacionalidade) {
         if(nome != null && nacionalidade != null) {
-            return autorRepository.findByNomeAndNacionalidade(nome, nacionalidade);
+            return autorRepository.findByNomeLikeAndNacionalidade("%" + nome + "%", "%" + nacionalidade + "%");
         }
 
         if (nome != null) {
-            return autorRepository.findByNome(nome);
+            return autorRepository.findByNomeLike("%" +nome+ "%");
         }
 
         if (nacionalidade != null) {
-            return autorRepository.findByNacionalidade(nacionalidade);
+            return autorRepository.findByNacionalidadeLike("%" +nacionalidade+ "%");
         }
         return autorRepository.findAll();
     }

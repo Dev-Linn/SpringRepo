@@ -12,7 +12,7 @@ public interface AutorRepository extends JpaRepository<Autor, UUID> {
     @Query("SELECT a FROM Autor a")
      List<Autor> ListarTodosAutores();
 
-     List<Autor>findByNome(String nome);
-     List<Autor>findByNacionalidade(String nacionalidade);
-     List<Autor>findByNomeAndNacionalidade(String nome, String nacionalidade);
+     List<Autor>findByNomeLike(String nome);
+     List<Autor>findByNacionalidadeLike(String nacionalidade);
+     List<Autor>findByNomeLikeAndNacionalidade(String nome, String nacionalidade);
 }
