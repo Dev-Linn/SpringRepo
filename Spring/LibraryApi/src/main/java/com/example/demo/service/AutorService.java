@@ -6,6 +6,10 @@ import com.example.demo.repository.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class AutorService {
 
@@ -18,5 +22,18 @@ public class AutorService {
 
     public Autor save(Autor autor) {
         return autorRepository.save(autor);
+    }
+
+    public Optional<Autor> findById(UUID id) {
+        return autorRepository.findById(id);
+    }
+
+    public List<Autor> listarTodos() {
+        return autorRepository.ListarTodosAutores();
+    }
+
+    public void excluir(String id) {
+        UUID uuid = UUID.fromString(id);
+        autorRepository.deleteById(uuid);
     }
 }
