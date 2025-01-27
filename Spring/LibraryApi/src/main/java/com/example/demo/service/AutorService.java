@@ -1,32 +1,26 @@
 package com.example.demo.service;
 
 
+import com.example.demo.exceptions.OperacaoNaoPermitidaException;
 import com.example.demo.model.Autor;
 import com.example.demo.repository.AutorRepository;
+import com.example.demo.repository.LivroRepository;
 import com.example.demo.validator.AutorValidator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.Validator;
+
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class AutorService {
 
     private final AutorValidator autorValidator;
     private final AutorRepository autorRepository;
-    private final Validator validator;
-
-
-    public AutorService(AutorValidator autorValidator, AutorRepository autorRepository, Validator validator) {
-        this.autorValidator = autorValidator;
-        this.autorRepository = autorRepository;
-        this.validator = validator;
-    }
-
-
-
+    private final LivroRepository livroRepository;
 
     public Autor save(Autor autor) {
         autorValidator.validar(autor);
@@ -49,10 +43,14 @@ public class AutorService {
         return autorRepository.ListarTodosAutores();
     }
 
-    public void excluir(String id) {
-        UUID uuid = UUID.fromString(id);
-        autorRepository.deleteById(uuid);
+    public void excluirPorid(Autor autor) {
+        if(possuiLivro(autor)){
+            throw new OperacaoNaoPermitidaException("Não é possivel excluir um autor possui livros cadastrados");
+        }
+        autorRepository.delete(autor);
     }
+
+
 
     public List<Autor> pesquisa(String nome, String nacionalidade) {
         if(nome != null && nacionalidade != null) {
@@ -67,6 +65,10 @@ public class AutorService {
             return autorRepository.findByNacionalidadeLike("%" +nacionalidade+ "%");
         }
         return autorRepository.findAll();
+    }
+
+    public boolean possuiLivro(Autor autor){
+        return livroRepository.existsByAutor(autor);
     }
 
 }

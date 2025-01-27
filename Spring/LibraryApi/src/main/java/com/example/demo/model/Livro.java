@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
@@ -34,6 +35,7 @@ public class Livro {
     @Column(name= "preco", precision = 18, scale = 2)
     private BigDecimal preco;
 
-    @ManyToOne @JoinColumn(name = "id_autor")
+    @ManyToOne @JsonIgnore
+    @JoinColumn(name = "id_autor")
     private Autor autor;
 }

@@ -25,11 +25,11 @@ public class AutorValidator {
 
     private boolean existeAutor(Autor autor){
         Optional<Autor> autorEncontrado = autorRepository.findByNome(autor.getNome());
-        if(autor.getId() == null){
-            return autorEncontrado.isPresent();
+        if(autorEncontrado.isEmpty()){
+            return false;
         }
 
-        return !autor.getId().equals(autorEncontrado.get().getId()) & autorEncontrado.isPresent();
+        return autor.getId() == null || !autor.getId().equals(autorEncontrado.get().getId());
 
     }
 }
