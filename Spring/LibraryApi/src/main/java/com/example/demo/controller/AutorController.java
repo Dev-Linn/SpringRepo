@@ -1,14 +1,14 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.AutorDTO;
+import com.example.demo.dto.ErroResposta;
+import com.example.demo.exceptions.RegistroDuplicadoException;
 import com.example.demo.model.Autor;
 import com.example.demo.service.AutorService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.swing.text.html.Option;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -18,29 +18,36 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("autores")
-public class AutoController {
+public class AutorController {
 
     private final AutorService autorService;
 
-    public AutoController(AutorService autorService) {
+    public AutorController(AutorService autorService) {
 
         this.autorService = autorService;
     }
 
     @PostMapping
-    public ResponseEntity<Void> salvar(@RequestBody AutorDTO autor){
+    public ResponseEntity<Object> salvar(@RequestBody AutorDTO autor){
 
-        Autor autorEntidade = autor.mapearParaAutor();
-        autorService.save(autorEntidade);
+        try {
+            Autor autorEntidade = autor.mapearParaAutor();
+            autorService.save(autorEntidade);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(autorEntidade.getId()).toUri();
-        return ResponseEntity.created(location).build();
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(autorEntidade.getId()).toUri();
+            return ResponseEntity.created(location).build();
+        } catch (RegistroDuplicadoException e) {
+            var erroDto = ErroResposta.conflito(e.getMessage());
+            return ResponseEntity.status(erroDto.status()).body(erroDto);
+        }
     }
 
     @GetMapping("{id}")
     public ResponseEntity<AutorDTO> obeterDetalhes(@PathVariable("id") String id){
+
         UUID uuid = UUID.fromString(id);
         Optional<Autor> autorOptional = autorService.findById(uuid);
+
         if(autorOptional.isPresent()){
             Autor autor = autorOptional.get();
             AutorDTO dto = new AutorDTO(autor.getId(), autor.getNome(), autor.getDataNascimento(), autor.getNacionalidade());
@@ -86,6 +93,7 @@ public class AutoController {
 
     @PutMapping("{id}")
     public ResponseEntity<Void>atualizar(@PathVariable("id")String id, @RequestBody AutorDTO dto){
+
         var idAutor = UUID.fromString(id);
         Optional<Autor> autorOptional = autorService.findById(idAutor);
         if(autorOptional.isEmpty()){

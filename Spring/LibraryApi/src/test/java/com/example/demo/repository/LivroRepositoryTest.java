@@ -33,7 +33,7 @@ class LivroRepositoryTest {
         livro.setPreco(BigDecimal.valueOf(999.00));
         livro.setDataPublicacao(LocalDate.of(2005,3,14));
 
-        UUID id = UUID.fromString("b1a1f74a-66fc-4db4-ba3e-031b95afb216");
+        UUID id = UUID.fromString("cddafa75-f65b-4462-8a6b-21d91cc6a54b");
         Optional<Autor> autor = autorRepository.findById(id);
         if (autor.isPresent()) {
             livro.setAutor(autor.get());
@@ -45,7 +45,7 @@ class LivroRepositoryTest {
 
   @Test
     public void deletarLivro(){
-        UUID id = UUID.fromString("5fc458dd-0ece-4fb6-a505-e38e068dc4ee");
+        UUID id = UUID.fromString("f8758bba-86f3-48db-9a8c-101a141fe730");
         livroRepository.deleteById(id);
   }
 
