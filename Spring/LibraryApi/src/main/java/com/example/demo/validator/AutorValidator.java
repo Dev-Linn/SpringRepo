@@ -29,6 +29,8 @@ public class AutorValidator {
             return false;
         }
 
+
+        
         return autor.getId() == null || !autor.getId().equals(autorEncontrado.get().getId());
 
     }

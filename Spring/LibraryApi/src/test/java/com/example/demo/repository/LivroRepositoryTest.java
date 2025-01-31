@@ -33,7 +33,7 @@ class LivroRepositoryTest {
         livro.setPreco(BigDecimal.valueOf(999.00));
         livro.setDataPublicacao(LocalDate.of(2005,3,14));
 
-        UUID id = UUID.fromString("652421e3-ff78-423c-b70e-bc2f5022e618");
+        UUID id = UUID.fromString("9430e638-7a46-4cfd-a5d5-fda1a23dbbf0");
         Optional<Autor> autor = autorRepository.findById(id);
         if (autor.isPresent()) {
             livro.setAutor(autor.get());
