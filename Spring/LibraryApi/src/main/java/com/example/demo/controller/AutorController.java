@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class AutorController {
 
     private final AutorService autorService;
-
+        //posta um autor
     @PostMapping
     public ResponseEntity<Object> salvar(@RequestBody @Valid AutorDTO autor){
 
@@ -95,7 +95,7 @@ public class AutorController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Object>atualizar(@PathVariable("id")String id, @RequestBody AutorDTO dto){
+    public ResponseEntity<Object>atualizar(@PathVariable("id")String id, @RequestBody @Valid AutorDTO dto){
 
         try {
             var idAutor = UUID.fromString(id);
