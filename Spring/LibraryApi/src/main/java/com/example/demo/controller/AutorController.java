@@ -78,7 +78,7 @@ public class AutorController {
         }
     }
 
-
+    //obtem um autor por nome e nacionalidade (like)
     @GetMapping
     public ResponseEntity<List<AutorDTO>> pesquisar(@RequestParam(value = "nome", required = false) String nome,
                                                     @RequestParam(value = "nacionalidade", required = false) String nacionalidade)
