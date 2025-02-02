@@ -40,7 +40,7 @@ public class AutorController {
             return ResponseEntity.status(erroDto.status()).body(erroDto);
         }
     }
-
+    //obtem um autor por id
     @GetMapping("{id}")
     public ResponseEntity<AutorDTO> obeterDetalhes(@PathVariable("id") String id){
 
@@ -57,6 +57,7 @@ public class AutorController {
 
     }
 
+    //obtem todos autores por id
     @GetMapping("/all")
     public List<Autor> retornarAutores(){
         return autorService.listarTodos();
