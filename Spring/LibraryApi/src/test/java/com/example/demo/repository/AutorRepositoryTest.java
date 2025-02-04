@@ -36,7 +36,7 @@ public class AutorRepositoryTest {
 
     @Test
     public void atualizarTest() {
-        var id = UUID.fromString("84667f8d-e433-4d0a-8fc0-0c09be4a93cd");
+        var id = UUID.fromString("5f54f110-a88a-495d-82ca-949c5c700db8");
 
         Optional<Autor> possivelautor = repository.findById(id);
 

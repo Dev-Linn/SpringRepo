@@ -69,7 +69,7 @@ public class AutorService {
         return autorRepository.findAll();
     }
 
-    public List<Autor> pesquisaByExample(String nome, String nacionalidade) {
+    public List<Autor> pesquisas(String nome, String nacionalidade) {
         var autor = new Autor();
         autor.setNome(nome);
         autor.setNacionalidade(nacionalidade);
