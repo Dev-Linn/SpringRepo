@@ -7,7 +7,6 @@ import com.example.demo.model.Livro;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -21,6 +20,7 @@ class LivroRepositoryTest {
     @Autowired
     LivroRepository livroRepository;
 
+
     @Autowired
     AutorRepository autorRepository;
 
@@ -33,7 +33,7 @@ class LivroRepositoryTest {
         livro.setPreco(BigDecimal.valueOf(999.00));
         livro.setDataPublicacao(LocalDate.of(2005,3,14));
 
-        UUID id = UUID.fromString("9430e638-7a46-4cfd-a5d5-fda1a23dbbf0");
+        UUID id = UUID.fromString("8fbaeea2-a555-460a-bdbc-a036699b0c23");
         Optional<Autor> autor = autorRepository.findById(id);
         if (autor.isPresent()) {
             livro.setAutor(autor.get());
