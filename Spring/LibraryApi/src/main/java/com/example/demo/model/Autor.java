@@ -18,6 +18,7 @@ import java.util.UUID;
 @Entity
 @Table(name="autor", schema = "public")
 @EntityListeners(AuditingEntityListener.class)
+
 public class Autor implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Id @Column(name = "id") private UUID id;
