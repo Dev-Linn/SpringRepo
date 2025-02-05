@@ -1,7 +1,7 @@
 package com.example.demo.controller.common;
 
-import com.example.demo.dto.ErroCampo;
-import com.example.demo.dto.ErroResposta;
+import com.example.demo.controller.dto.ErroCampo;
+import com.example.demo.controller.dto.ErroResposta;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;

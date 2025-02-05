@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.controller.dto;
 
 import com.example.demo.model.Autor;
 import jakarta.validation.constraints.NotBlank;

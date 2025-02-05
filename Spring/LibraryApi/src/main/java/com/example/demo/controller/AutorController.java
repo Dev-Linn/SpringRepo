@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.AutorDTO;
-import com.example.demo.dto.ErroResposta;
+import com.example.demo.controller.dto.AutorDTO;
+import com.example.demo.controller.dto.ErroResposta;
 import com.example.demo.exceptions.OperacaoNaoPermitidaException;
 import com.example.demo.exceptions.RegistroDuplicadoException;
 import com.example.demo.model.Autor;

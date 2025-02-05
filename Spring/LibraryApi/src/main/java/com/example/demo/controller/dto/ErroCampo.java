@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.controller.dto;
 
 public record ErroCampo(String campo, String erro) {
 }
