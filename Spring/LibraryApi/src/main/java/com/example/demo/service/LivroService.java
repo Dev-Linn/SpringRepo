@@ -2,15 +2,17 @@ package com.example.demo.service;
 
 
 import com.example.demo.repository.LivroRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 @RequiredArgsConstructor
 public class LivroService {
 
-    @Autowired
+
     private final LivroRepository livroRepository;
 
 
