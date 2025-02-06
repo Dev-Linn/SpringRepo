@@ -74,7 +74,7 @@ public class AutorService {
         autor.setNome(nome);
         autor.setNacionalidade(nacionalidade);
 
-        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+            ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example<Autor> example = Example.of(autor, matcher);
         return autorRepository.findAll(example);
 
