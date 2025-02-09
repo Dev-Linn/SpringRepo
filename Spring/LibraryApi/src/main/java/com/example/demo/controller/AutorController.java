@@ -2,12 +2,15 @@ package com.example.demo.controller;
 
 import com.example.demo.controller.dto.AutorDTO;
 import com.example.demo.controller.dto.ErroResposta;
+import com.example.demo.controller.mappers.AutorMapper;
 import com.example.demo.exceptions.OperacaoNaoPermitidaException;
 import com.example.demo.exceptions.RegistroDuplicadoException;
 import com.example.demo.model.Autor;
 import com.example.demo.service.AutorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -22,18 +25,21 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("autores")
-public class AutorController {
+public class AutorController implements GenericController{
 
     private final AutorService autorService;
+
+    @Qualifier("autorMapper")
+    private final AutorMapper mapper;
         //posta um autor
     @PostMapping
-    public ResponseEntity<Object> salvar(@RequestBody @Valid AutorDTO autor){
+    public ResponseEntity<Object> salvar(@RequestBody @Valid AutorDTO dto){
 
         try {
-            Autor autorEntidade = autor.mapearParaAutor();
-            autorService.save(autorEntidade);
+            Autor autor = mapper.toEntity(dto);
+            autorService.save(autor);
 
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(autorEntidade.getId()).toUri();
+            URI location = gerarHeaderLocation(autor.getId());
             return ResponseEntity.created(location).build();
         } catch (RegistroDuplicadoException e) {
             var erroDto = ErroResposta.conflito(e.getMessage());
@@ -45,16 +51,10 @@ public class AutorController {
     public ResponseEntity<AutorDTO> obeterDetalhes(@PathVariable("id") String id){
 
         UUID uuid = UUID.fromString(id);
-        Optional<Autor> autorOptional = autorService.findById(uuid);
-
-        if(autorOptional.isPresent()){
-            Autor autor = autorOptional.get();
-            AutorDTO dto = new AutorDTO(autor.getId(), autor.getNome(), autor.getDataNascimento(), autor.getNacionalidade());
+        return autorService.findById(uuid).map(Autor -> {
+            AutorDTO dto = mapper.toDto(Autor);
             return ResponseEntity.ok(dto);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-
+        }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     //obtem todos autores por id
