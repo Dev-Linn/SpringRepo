@@ -45,7 +45,7 @@ class LivroRepositoryTest {
 
   @Test
     public void deletarLivro(){
-        UUID id = UUID.fromString("f8758bba-86f3-48db-9a8c-101a141fe730");
+        UUID id = UUID.fromString("54dd733b-cc87-430e-9378-afbe3bd4b48b");
         livroRepository.deleteById(id);
   }
 
