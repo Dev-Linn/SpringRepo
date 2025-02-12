@@ -18,7 +18,7 @@ import java.util.UUID;
  * @see LivroRepositoryTest
  */
 
-
+//LIVRO REPOSITORY
 public interface LivroRepository extends JpaRepository<Livro, UUID> {
 
     // QUERY METOD
