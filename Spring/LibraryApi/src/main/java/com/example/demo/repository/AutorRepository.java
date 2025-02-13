@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+//autorRepository
 @Repository
 public interface AutorRepository extends JpaRepository<Autor, UUID> {
 
