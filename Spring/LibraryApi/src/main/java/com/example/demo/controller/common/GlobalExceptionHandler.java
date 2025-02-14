@@ -51,4 +51,5 @@ public class GlobalExceptionHandler {
         return new ErroResposta(HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 "Ocorreu um erro inesperado entre em contato com a administracao", List.of());
     }
+
 }
