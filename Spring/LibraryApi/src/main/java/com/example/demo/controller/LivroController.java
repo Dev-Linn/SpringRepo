@@ -28,12 +28,10 @@ public class LivroController implements GenericController {
     //ResponseEntity
     @PostMapping
     public ResponseEntity<Void> salvar(@Valid @RequestBody CadastroLivroDTO dto) {
-
         Livro livro = livroMapper.toEntity(dto);
         livroService.save(livro);
         var url = gerarHeaderLocation(livro.getId());
-        return ResponseEntity.accepted().location(url).build();
-
+        return ResponseEntity.created(url).build();
     }
 
     @GetMapping("{id}")
@@ -42,6 +40,14 @@ public class LivroController implements GenericController {
                 var dto = livroMapper.toDto(livro);
                 return ResponseEntity.ok(dto);
             }).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Object> deletarLivro(@PathVariable("id") String id) {
+        return livroService.obterPorId(UUID.fromString(id)).map(livro -> {
+            livroService.delete(livro);
+            return ResponseEntity.noContent().build();
+        }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
 
